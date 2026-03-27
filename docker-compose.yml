@@ -1,0 +1,36 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  logger-service:
+    build: ./loggerMS
+    container_name: logger-service
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./loggerMS:/app        # ← local code syncs to container
+      - /app/node_modules      # ← keep container's node_modules
+    depends_on:
+      - rabbitmq
+
+  info-consumer:
+    build: ./infoMS
+    container_name: info-consumer
+    volumes:
+      - ./infoMS:/app
+      - /app/node_modules
+    depends_on:
+      - rabbitmq
+
+  warning-error-consumer:
+    build: ./warningAndErrorMS
+    container_name: warning-error-consumer
+    volumes:
+      - ./warningAndErrorMS:/app
+      - /app/node_modules
+    depends_on:
+      - rabbitmq
