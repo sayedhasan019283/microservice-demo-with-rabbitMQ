@@ -33,6 +33,7 @@ async function connectWithRetry(retries = 10, delayMs = 3000) {
 }
 
 async function consumeMessages() {
+  // Note: In a production system, you might want to handle connection loss and re-establish the connection/channel as needed. This example focuses on the initial connection and consumption logic.
   const connection = await connectWithRetry();
   const channel = await connection.createChannel();
 
