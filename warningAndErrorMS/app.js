@@ -48,6 +48,7 @@ async function consumeMessages() {
     if (data.logType === "Warning") {
       console.log("Received:",   "yes! yoooo! This is a warning log");
     } else if (data.logType === "Error") {
+      // In a real system, you might want to trigger alerts, write to a separate error log, or take other actions for errors. For this example, we'll just log it to the console.
       console.log("Received:",  "yes! yoooo! This is an error log");
     }
     channel.ack(msg);
