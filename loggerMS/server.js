@@ -19,7 +19,7 @@ app.post("/sendLog", async (req, res) => {
   if (!logType || !message) {
     return res.status(400).json({ error: "logType and message are required." });
   }
-
+// Note: The saga will handle retries and error responses, so we just call it and return the result or error as needed.
   try {
     const result = await saga.execute(logType, message);
     res.status(200).json(result);
