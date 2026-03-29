@@ -21,6 +21,7 @@ app.post("/sendLog", async (req, res) => {
   }
 // Note: The saga will handle retries and error responses, so we just call it and return the result or error as needed.
   try {
+    // The saga will return a result object with success status and any relevant data or error messages. The producer will handle the actual message sending and retry logic, while the saga orchestrator will manage the overall flow and error handling.
     const result = await saga.execute(logType, message);
     res.status(200).json(result);
   } catch (err) {
