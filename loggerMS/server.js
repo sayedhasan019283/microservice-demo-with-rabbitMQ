@@ -30,7 +30,7 @@ app.post("/sendLog", async (req, res) => {
     res.status(status).json({ error: err.message });
   }
 });
-
+// Server Listening
 app.listen(3000, () => {
   console.log("Server started on port 3000...");
 });

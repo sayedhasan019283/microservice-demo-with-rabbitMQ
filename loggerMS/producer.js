@@ -40,7 +40,7 @@ class Producer {
       routingKey,
       Buffer.from(JSON.stringify(logDetails)),
     );
-
+    // Log the message details to the console for debugging purposes. This will help us verify that the message is being sent correctly and contains the expected information.
     console.log(
       `The new ${routingKey} log is sent to exchange ${exchangeName}`,
     );
